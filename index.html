@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Magic Fog — SuSuDeMi</title>
-<meta name="description" content="Magic Fog: an anonymous, privacy-first iOS app for venting what's on your mind. Nothing is ever sent to a third-party AI service.">
+<title>Magic Fog Cast — SuSuDeMi</title>
+<meta name="description" content="Magic Fog Cast: an anonymous, privacy-first iOS app for venting what's on your mind. Nothing is ever sent to a third-party AI service.">
 <style>
   :root{
     --bg-deep:#0d0d0d;
@@ -133,6 +133,31 @@
   }
   .store-btn:hover{text-decoration:none; opacity:0.9;}
 
+  /* feature highlight */
+  .feature-card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:36px 40px;
+  }
+  .feature-card .feature-badge{
+    display:inline-block;
+    font-size:0.75em;
+    letter-spacing:0.08em;
+    color:var(--accent);
+    border:1px solid var(--accent);
+    padding:3px 12px;
+    border-radius:999px;
+    margin-bottom:14px;
+  }
+  .feature-card h3{
+    font-size:1.25em;
+    color:#fff;
+    font-weight:400;
+    margin:0 0 14px;
+  }
+  .feature-card p{margin:0;}
+
   /* screenshot placeholders */
   .screens-row{
     display:flex;
@@ -204,16 +229,16 @@
 <div class="hero">
   <h1 class="lang-ja">誰にも言えないことも、頭から離れない考えも。</h1>
   <h1 class="lang-en">The things you can't say. The thoughts that won't leave.</h1>
-  <p class="lang-ja">Magic Fogは、心の中に溜まったものを少しだけ軽くする、匿名の吐き出しアプリです。すべて端末内で完結し、外部のAIサービスにデータを送ることはありません。</p>
-  <p class="lang-en">Magic Fog is an anonymous venting app that makes what's weighing on your mind a little lighter. Everything runs on your device — nothing is ever sent to a third-party AI service.</p>
+  <p class="lang-ja">まほうのモヤモヤポイは、心の中に溜まったものを少しだけ軽くする、匿名の吐き出しアプリです。すべて端末内で完結し、外部のAIサービスにデータを送ることはありません。</p>
+  <p class="lang-en">Magic Fog Cast is an anonymous venting app that makes what's weighing on your mind a little lighter. Everything runs on your device — nothing is ever sent to a third-party AI service.</p>
 </div>
 
 <section id="magic-fog">
   <div class="featured-card">
     <div class="fc-text">
       <h3>
-        <span class="lang-ja">まほうのモヤモヤ</span>
-        <span class="lang-en">Magic Fog</span>
+        <span class="lang-ja">まほうのモヤモヤポイ</span>
+        <span class="lang-en">Magic Fog Cast</span>
       </h3>
       <p class="fc-tagline lang-ja">匿名で愚痴・本音を吐き出す場所</p>
       <p class="fc-tagline lang-en">Vent anonymously. No replies, no likes, no one watching.</p>
@@ -222,6 +247,19 @@
       <a class="store-btn lang-ja" href="https://apps.apple.com/jp/app/magic-fog/id6759996278" target="_blank" rel="noopener">App Storeで見る</a>
       <a class="store-btn lang-en" href="https://apps.apple.com/jp/app/magic-fog/id6759996278?l=en-US" target="_blank" rel="noopener">Download on the App Store</a>
     </div>
+  </div>
+</section>
+
+<section id="features">
+  <h2 class="lang-ja">まほうのモヤモヤポイだけの体験</h2>
+  <h2 class="lang-en">What Makes Magic Fog Cast Different</h2>
+  <div class="feature-card">
+    <span class="feature-badge lang-ja">プレミアム機能</span>
+    <span class="feature-badge lang-en">Premium Feature</span>
+    <h3 class="lang-ja">Kii-Play — タイプした時のリズムまで、そのまま届く</h3>
+    <h3 class="lang-en">Kii-Play — Feel the exact rhythm it was typed in</h3>
+    <p class="lang-ja">モヤを受け取ったとき、送った人がどんな速さ・間で文字を打っていたかを、キー音とともに再現できます。急いで打ったのか、迷いながら打ったのか。文章だけでは伝わらない「間」まで届けてくれる、他にはないまほうのモヤモヤポイだけの機能です。</p>
+    <p class="lang-en">When you catch a Fog, you can replay the exact typing rhythm the sender used — the pauses, the hesitation, the rush — reproduced as keystroke sounds. It's a way of feeling someone's words, not just reading them. A feature you won't find in other apps like this.</p>
   </div>
 </section>
 
