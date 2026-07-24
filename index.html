@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SuSuDeMi</title>
-<meta name="description" content="SuSuDeMi makes small, privacy-first iOS apps for the things you can't say and the thoughts you can't stop.">
+<title>Magic Fog — SuSuDeMi</title>
+<meta name="description" content="Magic Fog: an anonymous, privacy-first iOS app for venting what's on your mind. Nothing is ever sent to a third-party AI service.">
 <style>
   :root{
     --bg-deep:#0d0d0d;
@@ -39,9 +39,14 @@
     padding:24px 28px;
     border-bottom:1px solid var(--border);
   }
-  header .logo-wrap{display:flex; align-items:center; gap:12px;}
+  header .logo-wrap{display:flex; align-items:center; gap:24px;}
   header img.logo{height:40px; width:auto;}
   header .brand-name{font-size:1.1em; letter-spacing:0.04em; color:var(--text-main);}
+  header nav.site-nav a{
+    font-size:0.9em;
+    color:var(--text-soft);
+  }
+  header nav.site-nav a:hover{color:var(--accent);}
 
   #langToggle{
     background:transparent;
@@ -128,39 +133,6 @@
   }
   .store-btn:hover{text-decoration:none; opacity:0.9;}
 
-  /* mind series grid */
-  .apps-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
-    gap:20px;
-  }
-  .app-card{
-    background:var(--bg-card-2);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:22px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-  }
-  .app-card h4{
-    margin:0;
-    color:#fff;
-    font-weight:400;
-    font-size:1.05em;
-  }
-  .app-card p{
-    margin:0;
-    font-size:0.9em;
-    color:var(--text-soft);
-    flex-grow:1;
-  }
-  .app-card a.card-link{
-    font-size:0.85em;
-    font-weight:600;
-    color:var(--accent);
-  }
-
   /* screenshot placeholders */
   .screens-row{
     display:flex;
@@ -218,6 +190,10 @@
 <header>
   <div class="logo-wrap">
     <img src="image/SuSuDeMi_logo.png" alt="SuSuDeMi" class="logo">
+    <nav class="site-nav">
+      <a href="privacy-policy.html" class="lang-ja">プライバシーポリシー</a>
+      <a href="privacy-policy.html" class="lang-en">Privacy Policy</a>
+    </nav>
   </div>
   <button id="langToggle" onclick="toggleLang()">
     <span class="lang-ja">EN</span>
@@ -228,13 +204,11 @@
 <div class="hero">
   <h1 class="lang-ja">誰にも言えないことも、頭から離れない考えも。</h1>
   <h1 class="lang-en">The things you can't say. The thoughts that won't leave.</h1>
-  <p class="lang-ja">SuSuDeMiは、心の中に溜まったものを少しだけ軽くする、小さなiOSアプリを作っています。すべて端末内で完結し、外部のAIサービスにデータを送ることはありません。</p>
-  <p class="lang-en">SuSuDeMi builds small iOS apps that make what's weighing on your mind a little lighter. Everything runs on your device — nothing is ever sent to a third-party AI service.</p>
+  <p class="lang-ja">Magic Fogは、心の中に溜まったものを少しだけ軽くする、匿名の吐き出しアプリです。すべて端末内で完結し、外部のAIサービスにデータを送ることはありません。</p>
+  <p class="lang-en">Magic Fog is an anonymous venting app that makes what's weighing on your mind a little lighter. Everything runs on your device — nothing is ever sent to a third-party AI service.</p>
 </div>
 
 <section id="magic-fog">
-  <h2 class="lang-ja">フラッグシップアプリ</h2>
-  <h2 class="lang-en">Flagship App</h2>
   <div class="featured-card">
     <div class="fc-text">
       <h3>Magic Fog <span class="lang-ja">（まほうのモヤモヤ）</span></h3>
@@ -245,62 +219,6 @@
       <a class="store-btn lang-ja" href="https://apps.apple.com/jp/app/magic-fog/id6759996278" target="_blank" rel="noopener">App Storeで見る</a>
       <a class="store-btn lang-en" href="https://apps.apple.com/jp/app/magic-fog/id6759996278?l=en-US" target="_blank" rel="noopener">Download on the App Store</a>
     </div>
-  </div>
-</section>
-
-<section id="mind-series">
-  <h2 class="lang-ja">Mind シリーズ</h2>
-  <h2 class="lang-en">The Mind Series</h2>
-  <div class="apps-grid">
-
-    <div class="app-card">
-      <h4>MindShoutOut</h4>
-      <p class="lang-ja">頭の負担を減らす。心の負荷を減らす。</p>
-      <p class="lang-en">Clear mental load. Reduce mental load.</p>
-      <a class="card-link lang-ja" href="https://apps.apple.com/jp/app/mindshoutout-%E9%A0%AD%E3%81%AE%E8%B2%A0%E6%8B%85%E3%82%92%E6%B8%9B%E3%82%89%E3%81%99/id6752512145" target="_blank" rel="noopener">App Storeで見る →</a>
-      <a class="card-link lang-en" href="https://apps.apple.com/jp/app/mindshoutout-clear-mental-load/id6752512145?l=en-US" target="_blank" rel="noopener">View on the App Store →</a>
-    </div>
-
-    <div class="app-card">
-      <h4>MindFlipOut</h4>
-      <p class="lang-ja">ぐるぐる思考を止める。思考ループを止める。</p>
-      <p class="lang-en">End overthinking. Stop replay loops.</p>
-      <a class="card-link lang-ja" href="https://apps.apple.com/jp/app/mindflipout-%E3%81%90%E3%82%8B%E3%81%90%E3%82%8B%E6%80%9D%E8%80%83%E3%82%92%E6%AD%A2%E3%82%81%E3%82%8B/id6752633008" target="_blank" rel="noopener">App Storeで見る →</a>
-      <a class="card-link lang-en" href="https://apps.apple.com/jp/app/mindflipout-end-overthinking/id6752633008?l=en-US" target="_blank" rel="noopener">View on the App Store →</a>
-    </div>
-
-    <div class="app-card">
-      <h4>MindZoneOut</h4>
-      <p class="lang-ja">思考を静かにする。過剰刺激を減らす。</p>
-      <p class="lang-en">Quiet your mind. Reduce overstimulation.</p>
-      <a class="card-link lang-ja" href="https://apps.apple.com/jp/app/mindzoneout-%E6%80%9D%E8%80%83%E3%82%92%E9%9D%99%E3%81%8B%E3%81%AB%E3%81%99%E3%82%8B/id6753839181" target="_blank" rel="noopener">App Storeで見る →</a>
-      <a class="card-link lang-en" href="https://apps.apple.com/jp/app/mindzoneout-quiet-your-mind/id6753839181?l=en-US" target="_blank" rel="noopener">View on the App Store →</a>
-    </div>
-
-    <div class="app-card">
-      <h4>MindEntry</h4>
-      <p class="lang-ja">思考から抜け出せない時に。</p>
-      <p class="lang-en">For when thoughts get stuck.</p>
-      <a class="card-link lang-ja" href="https://apps.apple.com/jp/app/mindentry/id6760157253" target="_blank" rel="noopener">App Storeで見る →</a>
-      <a class="card-link lang-en" href="https://apps.apple.com/jp/app/mindentry/id6760157253?l=en-US" target="_blank" rel="noopener">View on the App Store →</a>
-    </div>
-
-    <div class="app-card">
-      <h4>MindBackOut</h4>
-      <p class="lang-ja">仕事をオフに。プレッシャーから離れる。</p>
-      <p class="lang-en">Leave work behind. Step away from pressure.</p>
-      <a class="card-link lang-ja" href="https://apps.apple.com/jp/app/mindbackout-%E4%BB%95%E4%BA%8B%E3%82%92%E3%82%AA%E3%83%95%E3%81%AB/id6757397623" target="_blank" rel="noopener">App Storeで見る →</a>
-      <a class="card-link lang-en" href="https://apps.apple.com/jp/app/mindbackout-leave-work-behind/id6757397623?l=en-US" target="_blank" rel="noopener">View on the App Store →</a>
-    </div>
-
-    <div class="app-card">
-      <h4>MindBackyard</h4>
-      <p class="lang-ja">デジタルフィジェット。落ち着かない注意のために。</p>
-      <p class="lang-en">A digital fidget, for restless attention.</p>
-      <a class="card-link lang-ja" href="https://apps.apple.com/jp/app/mindbackyard-%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E3%83%95%E3%82%A3%E3%82%B8%E3%82%A7%E3%83%83%E3%83%88/id6755857619" target="_blank" rel="noopener">App Storeで見る →</a>
-      <a class="card-link lang-en" href="https://apps.apple.com/jp/app/mindbackyard-digital-fidget/id6755857619?l=en-US" target="_blank" rel="noopener">View on the App Store →</a>
-    </div>
-
   </div>
 </section>
 
