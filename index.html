@@ -1,45 +1,357 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SuSuDeMi - Magic Screen Binder</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #1a1a1a; /* 黒背景 */
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden; /* スクロールバーを出さない */
-        }
-        .container {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px; /* スマホ時に画面端にピッタリくっつきすぎないための余白 */
-            box-sizing: border-box;
-        }
-        .home-image {
-            /* デスクトップでは画像本来のサイズ、画面がそれより小さければ縮む設定 */
-            max-width: 100%; 
-            max-height: 100%;
-            width: auto;
-            height: auto;
-            display: block;
-            /* ミステリアスな浮遊感を出すための軽い影（お好みで） */
-            filter: drop-shadow(0 0 20px rgba(0,0,0,0.5));
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SuSuDeMi</title>
+<meta name="description" content="SuSuDeMi makes small, privacy-first iOS apps for the things you can't say and the thoughts you can't stop.">
+<style>
+  :root{
+    --bg-deep:#0d0d0d;
+    --bg-card:#1a1a1a;
+    --bg-card-2:#151515;
+    --accent:#B4A7D6;
+    --accent-soft:rgba(180,167,214,0.14);
+    --text-main:#EAD1DC;
+    --text-soft:#DDBECE;
+    --text-muted:#8a8a8a;
+    --border:#2c2c2c;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg-deep);
+    color:var(--text-soft);
+    font-family:'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, Tahoma, Geneva, Verdana, sans-serif;
+    line-height:1.7;
+  }
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  /* language toggling */
+  [data-lang="ja"] .lang-en{display:none;}
+  [data-lang="en"] .lang-ja{display:none;}
+
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:24px 28px;
+    border-bottom:1px solid var(--border);
+  }
+  header .logo-wrap{display:flex; align-items:center; gap:12px;}
+  header img.logo{height:40px; width:auto;}
+  header .brand-name{font-size:1.1em; letter-spacing:0.04em; color:var(--text-main);}
+
+  #langToggle{
+    background:transparent;
+    border:1px solid var(--accent);
+    color:var(--accent);
+    padding:8px 16px;
+    border-radius:999px;
+    font-size:0.85em;
+    letter-spacing:0.05em;
+    cursor:pointer;
+  }
+  #langToggle:hover{background:var(--accent-soft);}
+
+  .hero{
+    max-width:760px;
+    margin:0 auto;
+    padding:72px 28px 48px;
+    text-align:center;
+  }
+  .hero h1{
+    font-size:2.1em;
+    font-weight:300;
+    color:#fff;
+    margin:0 0 20px;
+    letter-spacing:0.02em;
+  }
+  .hero p{
+    font-size:1.05em;
+    color:var(--text-soft);
+    max-width:520px;
+    margin:0 auto;
+  }
+
+  section{
+    max-width:980px;
+    margin:0 auto;
+    padding:40px 28px;
+  }
+  section h2{
+    font-size:0.85em;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--accent);
+    text-align:center;
+    margin-bottom:36px;
+    font-weight:600;
+  }
+
+  /* Magic Fog featured card */
+  .featured-card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:40px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:32px;
+    align-items:center;
+    box-shadow:0 20px 50px rgba(0,0,0,0.45);
+  }
+  .featured-card .fc-text{flex:1; min-width:260px;}
+  .featured-card h3{
+    font-size:1.5em;
+    color:#fff;
+    margin:0 0 8px;
+    font-weight:400;
+  }
+  .featured-card .fc-tagline{
+    color:var(--accent);
+    font-size:0.95em;
+    margin-bottom:16px;
+  }
+  .featured-card p.fc-desc{margin-bottom:24px;}
+  .store-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--accent);
+    color:#161616;
+    font-weight:600;
+    padding:12px 22px;
+    border-radius:12px;
+    font-size:0.92em;
+  }
+  .store-btn:hover{text-decoration:none; opacity:0.9;}
+
+  /* mind series grid */
+  .apps-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    gap:20px;
+  }
+  .app-card{
+    background:var(--bg-card-2);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:22px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .app-card h4{
+    margin:0;
+    color:#fff;
+    font-weight:400;
+    font-size:1.05em;
+  }
+  .app-card p{
+    margin:0;
+    font-size:0.9em;
+    color:var(--text-soft);
+    flex-grow:1;
+  }
+  .app-card a.card-link{
+    font-size:0.85em;
+    font-weight:600;
+    color:var(--accent);
+  }
+
+  /* screenshot placeholders */
+  .screens-row{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .phone-frame{
+    width:200px;
+    height:420px;
+    border-radius:28px;
+    border:1px solid var(--border);
+    background:#000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:var(--text-muted);
+    font-size:0.85em;
+    overflow:hidden;
+  }
+  .phone-frame img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:top;
+    display:block;
+  }
+
+  .contact-box{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:36px;
+    text-align:center;
+  }
+  .contact-box h3{color:#fff; font-weight:300; margin-top:0;}
+
+  footer{
+    text-align:center;
+    padding:36px 20px 48px;
+    color:var(--text-muted);
+    font-size:0.8em;
+  }
+  footer a{color:var(--text-muted);}
+
+  @media (max-width:640px){
+    .featured-card{padding:28px;}
+    .hero{padding:56px 20px 36px;}
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <img src="image/SuSuDeMi_home.png" alt="SuSuDeMi Home" class="home-image">
+
+<header>
+  <div class="logo-wrap">
+    <img src="image/SuSuDeMi_logo.png" alt="SuSuDeMi" class="logo">
+  </div>
+  <button id="langToggle" onclick="toggleLang()">
+    <span class="lang-ja">EN</span>
+    <span class="lang-en">日本語</span>
+  </button>
+</header>
+
+<div class="hero">
+  <h1 class="lang-ja">誰にも言えないことも、頭から離れない考えも。</h1>
+  <h1 class="lang-en">The things you can't say. The thoughts that won't leave.</h1>
+  <p class="lang-ja">SuSuDeMiは、心の中に溜まったものを少しだけ軽くする、小さなiOSアプリを作っています。すべて端末内で完結し、外部のAIサービスにデータを送ることはありません。</p>
+  <p class="lang-en">SuSuDeMi builds small iOS apps that make what's weighing on your mind a little lighter. Everything runs on your device — nothing is ever sent to a third-party AI service.</p>
+</div>
+
+<section id="magic-fog">
+  <h2 class="lang-ja">フラッグシップアプリ</h2>
+  <h2 class="lang-en">Flagship App</h2>
+  <div class="featured-card">
+    <div class="fc-text">
+      <h3>Magic Fog <span class="lang-ja">（まほうのモヤモヤ）</span></h3>
+      <p class="fc-tagline lang-ja">匿名で愚痴・本音を吐き出す場所</p>
+      <p class="fc-tagline lang-en">Vent anonymously. No replies, no likes, no one watching.</p>
+      <p class="fc-desc lang-ja">胸につかえたモヤモヤを「モヤ」にして空へ放てば、どこかの誰かがそっと受け取ってくれるかもしれません。返信もいいねもフォロワー数もない、ただ吐き出すことと受け取られることだけのシンプルな場所です。</p>
+      <p class="fc-desc lang-en">Turn what's weighing on you into a "Fog" and release it into the atmosphere — someone, somewhere, may quietly catch it. No replies, no likes, no follower counts. Just the simple act of letting go, and being caught.</p>
+      <a class="store-btn lang-ja" href="https://apps.apple.com/jp/app/magic-fog/id6759996278" target="_blank" rel="noopener">App Storeで見る</a>
+      <a class="store-btn lang-en" href="https://apps.apple.com/jp/app/magic-fog/id6759996278?l=en-US" target="_blank" rel="noopener">Download on the App Store</a>
     </div>
+  </div>
+</section>
+
+<section id="mind-series">
+  <h2 class="lang-ja">Mind シリーズ</h2>
+  <h2 class="lang-en">The Mind Series</h2>
+  <div class="apps-grid">
+
+    <div class="app-card">
+      <h4>MindShoutOut</h4>
+      <p class="lang-ja">頭の負担を減らす。心の負荷を減らす。</p>
+      <p class="lang-en">Clear mental load. Reduce mental load.</p>
+      <a class="card-link lang-ja" href="https://apps.apple.com/jp/app/mindshoutout-%E9%A0%AD%E3%81%AE%E8%B2%A0%E6%8B%85%E3%82%92%E6%B8%9B%E3%82%89%E3%81%99/id6752512145" target="_blank" rel="noopener">App Storeで見る →</a>
+      <a class="card-link lang-en" href="https://apps.apple.com/jp/app/mindshoutout-clear-mental-load/id6752512145?l=en-US" target="_blank" rel="noopener">View on the App Store →</a>
+    </div>
+
+    <div class="app-card">
+      <h4>MindFlipOut</h4>
+      <p class="lang-ja">ぐるぐる思考を止める。思考ループを止める。</p>
+      <p class="lang-en">End overthinking. Stop replay loops.</p>
+      <a class="card-link lang-ja" href="https://apps.apple.com/jp/app/mindflipout-%E3%81%90%E3%82%8B%E3%81%90%E3%82%8B%E6%80%9D%E8%80%83%E3%82%92%E6%AD%A2%E3%82%81%E3%82%8B/id6752633008" target="_blank" rel="noopener">App Storeで見る →</a>
+      <a class="card-link lang-en" href="https://apps.apple.com/jp/app/mindflipout-end-overthinking/id6752633008?l=en-US" target="_blank" rel="noopener">View on the App Store →</a>
+    </div>
+
+    <div class="app-card">
+      <h4>MindZoneOut</h4>
+      <p class="lang-ja">思考を静かにする。過剰刺激を減らす。</p>
+      <p class="lang-en">Quiet your mind. Reduce overstimulation.</p>
+      <a class="card-link lang-ja" href="https://apps.apple.com/jp/app/mindzoneout-%E6%80%9D%E8%80%83%E3%82%92%E9%9D%99%E3%81%8B%E3%81%AB%E3%81%99%E3%82%8B/id6753839181" target="_blank" rel="noopener">App Storeで見る →</a>
+      <a class="card-link lang-en" href="https://apps.apple.com/jp/app/mindzoneout-quiet-your-mind/id6753839181?l=en-US" target="_blank" rel="noopener">View on the App Store →</a>
+    </div>
+
+    <div class="app-card">
+      <h4>MindEntry</h4>
+      <p class="lang-ja">思考から抜け出せない時に。</p>
+      <p class="lang-en">For when thoughts get stuck.</p>
+      <a class="card-link lang-ja" href="https://apps.apple.com/jp/app/mindentry/id6760157253" target="_blank" rel="noopener">App Storeで見る →</a>
+      <a class="card-link lang-en" href="https://apps.apple.com/jp/app/mindentry/id6760157253?l=en-US" target="_blank" rel="noopener">View on the App Store →</a>
+    </div>
+
+    <div class="app-card">
+      <h4>MindBackOut</h4>
+      <p class="lang-ja">仕事をオフに。プレッシャーから離れる。</p>
+      <p class="lang-en">Leave work behind. Step away from pressure.</p>
+      <a class="card-link lang-ja" href="https://apps.apple.com/jp/app/mindbackout-%E4%BB%95%E4%BA%8B%E3%82%92%E3%82%AA%E3%83%95%E3%81%AB/id6757397623" target="_blank" rel="noopener">App Storeで見る →</a>
+      <a class="card-link lang-en" href="https://apps.apple.com/jp/app/mindbackout-leave-work-behind/id6757397623?l=en-US" target="_blank" rel="noopener">View on the App Store →</a>
+    </div>
+
+    <div class="app-card">
+      <h4>MindBackyard</h4>
+      <p class="lang-ja">デジタルフィジェット。落ち着かない注意のために。</p>
+      <p class="lang-en">A digital fidget, for restless attention.</p>
+      <a class="card-link lang-ja" href="https://apps.apple.com/jp/app/mindbackyard-%E3%83%87%E3%82%B8%E3%82%BF%E3%83%AB%E3%83%95%E3%82%A3%E3%82%B8%E3%82%A7%E3%83%83%E3%83%88/id6755857619" target="_blank" rel="noopener">App Storeで見る →</a>
+      <a class="card-link lang-en" href="https://apps.apple.com/jp/app/mindbackyard-digital-fidget/id6755857619?l=en-US" target="_blank" rel="noopener">View on the App Store →</a>
+    </div>
+
+  </div>
+</section>
+
+<section id="screens">
+  <h2 class="lang-ja">アプリの中身</h2>
+  <h2 class="lang-en">Inside the Apps</h2>
+  <div class="screens-row">
+    <div class="phone-frame">
+      <img class="lang-ja" src="image/screens/magicfog-throw-ja.png" alt="モヤを投げる画面">
+      <img class="lang-en" src="image/screens/magicfog-throw-en.png" alt="Throw a Fog screen">
+    </div>
+    <div class="phone-frame">
+      <img class="lang-ja" src="image/screens/magicfog-catch-ja.png" alt="モヤを受け取る画面">
+      <img class="lang-en" src="image/screens/magicfog-catch-en.png" alt="Catch a Fog screen">
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-box">
+    <h3 class="lang-ja">お問い合わせ</h3>
+    <h3 class="lang-en">Contact</h3>
+    <p class="lang-ja">ご質問・ご要望・不具合報告は、こちらまでお気軽にご連絡ください。</p>
+    <p class="lang-en">Questions, feedback, or bug reports — feel free to reach out.</p>
+    <p><a href="mailto:susudemi999@hotmail.com">susudemi999@hotmail.com</a></p>
+    <p><a href="privacy-policy.html" class="lang-ja">プライバシーポリシー</a><a href="privacy-policy.html" class="lang-en">Privacy Policy</a></p>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 SuSuDeMi — All rights reserved.</p>
+</footer>
+
+<script>
+  function applyLang(lang){
+    document.documentElement.setAttribute('data-lang', lang);
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('susudemi-lang', lang); } catch(e){}
+  }
+  function toggleLang(){
+    var current = document.documentElement.getAttribute('data-lang');
+    applyLang(current === 'ja' ? 'en' : 'ja');
+  }
+  (function(){
+    var saved = null;
+    try { saved = localStorage.getItem('susudemi-lang'); } catch(e){}
+    if (saved === 'ja' || saved === 'en') {
+      applyLang(saved);
+    }
+  })();
+</script>
+
 </body>
 </html>
