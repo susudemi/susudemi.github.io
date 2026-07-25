@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja" data-lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oshi Scream Club — SuSuDeMi</title>
+<meta name="description" content="Oshi Scream Club: an anonymous voice SNS where you scream out stress and love for your oshi, with voice effects, oshi channels, and Scream Meter rankings.">
+<style>
+  :root{
+    --bg-deep:#0d0d0d;
+    --bg-card:#1a1a1a;
+    --accent:#B4A7D6;
+    --accent-soft:rgba(180,167,214,0.14);
+    --text-main:#EAD1DC;
+    --text-soft:#DDBECE;
+    --text-muted:#8a8a8a;
+    --border:#2c2c2c;
+    --scream:#E8452C;
+    --scream-soft:rgba(232,69,44,0.14);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg-deep);
+    color:var(--text-soft);
+    font-family:'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, Tahoma, Geneva, Verdana, sans-serif;
+    line-height:1.7;
+  }
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  [data-lang="ja"] .lang-en{display:none;}
+  [data-lang="en"] .lang-ja{display:none;}
+
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:24px 28px;
+    border-bottom:1px solid var(--border);
+  }
+  header .logo-wrap{display:flex; align-items:center; gap:24px;}
+  header img.logo{height:40px; width:auto;}
+  header nav.site-nav a{
+    font-size:0.9em;
+    color:var(--text-soft);
+    margin-right:16px;
+  }
+  header nav.site-nav a:last-child{margin-right:0;}
+  header nav.site-nav a:hover{color:var(--accent);}
+
+  #langToggle{
+    background:transparent;
+    border:1px solid var(--accent);
+    color:var(--accent);
+    padding:8px 16px;
+    border-radius:999px;
+    font-size:0.85em;
+    letter-spacing:0.05em;
+    cursor:pointer;
+  }
+  #langToggle:hover{background:var(--accent-soft);}
+
+  .hero{
+    max-width:760px;
+    margin:0 auto;
+    padding:72px 28px 48px;
+    text-align:center;
+  }
+  .hero h1{
+    font-size:2.1em;
+    font-weight:300;
+    color:#fff;
+    margin:0 0 20px;
+    letter-spacing:0.02em;
+  }
+  .hero p{
+    font-size:1.05em;
+    color:var(--text-soft);
+    max-width:520px;
+    margin:0 auto;
+  }
+
+  section{
+    max-width:980px;
+    margin:0 auto;
+    padding:40px 28px;
+  }
+  section h2{
+    font-size:0.85em;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--scream);
+    text-align:center;
+    margin-bottom:36px;
+    font-weight:600;
+  }
+
+  .featured-card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:40px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:32px;
+    align-items:center;
+    box-shadow:0 20px 50px rgba(0,0,0,0.45);
+    text-align:center;
+    justify-content:center;
+  }
+  .featured-card .fc-tagline{
+    color:var(--scream);
+    font-size:0.95em;
+    margin-bottom:16px;
+  }
+  .featured-card p.fc-desc{margin-bottom:24px; max-width:600px;}
+  .store-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--scream);
+    color:#fff;
+    font-weight:600;
+    padding:12px 22px;
+    border-radius:12px;
+    font-size:0.92em;
+  }
+  .store-btn:hover{text-decoration:none; opacity:0.9;}
+
+  .feature-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    gap:24px;
+  }
+  .feature-card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:32px 28px;
+  }
+  .feature-card .feature-badge{
+    display:inline-block;
+    font-size:1.6em;
+    margin-bottom:14px;
+  }
+  .feature-card h3{
+    font-size:1.1em;
+    color:#fff;
+    font-weight:400;
+    margin:0 0 12px;
+  }
+  .feature-card p{margin:0; font-size:0.92em;}
+
+  .contact-box{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:36px;
+    text-align:center;
+  }
+  .contact-box h3{color:#fff; font-weight:300; margin-top:0;}
+
+  footer{
+    text-align:center;
+    padding:36px 20px 48px;
+    color:var(--text-muted);
+    font-size:0.8em;
+  }
+  footer a{color:var(--text-muted);}
+
+  @media (max-width:640px){
+    .featured-card{padding:28px;}
+    .hero{padding:56px 20px 36px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-wrap">
+    <img src="../image/SuSuDeMi_logo.png" alt="SuSuDeMi" class="logo">
+    <nav class="site-nav">
+      <a href="../index.html" class="lang-ja">← アプリ一覧</a>
+      <a href="../index.html" class="lang-en">← All Apps</a>
+      <a href="privacy-policy.html" class="lang-ja">プライバシーポリシー</a>
+      <a href="privacy-policy.html" class="lang-en">Privacy Policy</a>
+    </nav>
+  </div>
+  <button id="langToggle" onclick="toggleLang()">
+    <span class="lang-ja">EN</span>
+    <span class="lang-en">日本語</span>
+  </button>
+</header>
+
+<div class="hero">
+  <h1 class="lang-ja">叫べ、推しのために。</h1>
+  <h1 class="lang-en">Scream for Your Oshi.</h1>
+  <p class="lang-ja">絶叫推し部は、匿名・ボイスエフェクトつきで思いきり叫んで投稿できる、新しいSNSです。推しへの愛も、日々のストレスも、声にして届けよう。</p>
+  <p class="lang-en">Oshi Scream Club is a new kind of social app where you don't type your feelings — you scream them. Anonymous, voice-modulated, and made for letting it all out.</p>
+</div>
+
+<section id="oshi-scream-club">
+  <div class="featured-card">
+    <div class="fc-text">
+      <p class="fc-tagline lang-ja">推し活×絶叫のストレス発散SNS</p>
+      <p class="fc-tagline lang-en">Scream for Your Oshi</p>
+      <p class="fc-desc lang-ja">氏名や端末情報とは紐づかない完全匿名。ボイスエフェクトで声を変えて投稿できるので、狭い部屋でも気兼ねなく叫べます。</p>
+      <p class="fc-desc lang-en">Completely anonymous — never linked to your name or device. Voice effects take the edge off, so you can scream without holding back, even in a thin-walled apartment.</p>
+      <a class="store-btn lang-ja" href="#" target="_blank" rel="noopener">App Storeで見る</a>
+      <a class="store-btn lang-en" href="#" target="_blank" rel="noopener">Download on the App Store</a>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <h2 class="lang-ja">絶叫推し部の特徴</h2>
+  <h2 class="lang-en">What Makes Oshi Scream Club Different</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <span class="feature-badge">🎭</span>
+      <h3 class="lang-ja">完全匿名 + ボイスエフェクト</h3>
+      <h3 class="lang-en">Anonymous & Voice-Modulated</h3>
+      <p class="lang-ja">ニックネームもアイコンも自動生成。ボイスエフェクトで声のトーンを変えられるので、誰にも特定されません。</p>
+      <p class="lang-en">Your nickname and icon are randomly generated. Voice effects change your pitch so no one can trace it back to you.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-badge">📻</span>
+      <h3 class="lang-ja">推しごとのチャンネル</h3>
+      <h3 class="lang-en">A Channel for Every Oshi</h3>
+      <p class="lang-ja">好きなアイドル・キャラ・声優・チームのチャンネルを作成・参加。同じ熱量のファンと絶叫を共有できます。</p>
+      <p class="lang-en">Create or join channels for your favorite idol, character, voice actor, or team, and share the intensity with fans who get it.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-badge">🏆</span>
+      <h3 class="lang-ja">絶叫メーターランキング</h3>
+      <h3 class="lang-en">Scream Meter Rankings</h3>
+      <p class="lang-ja">投稿ごとに音量・熱量を測定。デイリー・ウィークリーランキングで、あなたの愛の大きさを証明しよう。</p>
+      <p class="lang-en">Every scream is measured for volume and intensity. Compete in daily and weekly rankings and prove just how loud your love really is.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-box">
+    <h3 class="lang-ja">お問い合わせ</h3>
+    <h3 class="lang-en">Contact</h3>
+    <p class="lang-ja">ご質問・ご要望・不具合報告は、こちらまでお気軽にご連絡ください。</p>
+    <p class="lang-en">Questions, feedback, or bug reports — feel free to reach out.</p>
+    <p><a href="mailto:susudemi999@hotmail.com">susudemi999@hotmail.com</a></p>
+    <p><a href="privacy-policy.html" class="lang-ja">プライバシーポリシー</a><a href="privacy-policy.html" class="lang-en">Privacy Policy</a></p>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 SuSuDeMi — All rights reserved.</p>
+</footer>
+
+<script>
+  function applyLang(lang){
+    document.documentElement.setAttribute('data-lang', lang);
+    document.documentElement.setAttribute('lang', lang);
+    try { localStorage.setItem('susudemi-lang', lang); } catch(e){}
+  }
+  function toggleLang(){
+    var current = document.documentElement.getAttribute('data-lang');
+    applyLang(current === 'ja' ? 'en' : 'ja');
+  }
+  (function(){
+    var saved = null;
+    try { saved = localStorage.getItem('susudemi-lang'); } catch(e){}
+    if (saved === 'ja' || saved === 'en') {
+      applyLang(saved);
+    }
+  })();
+</script>
+
+</body>
+</html>
