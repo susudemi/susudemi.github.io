@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Magic Fog Cast — SuSuDeMi</title>
-<meta name="description" content="Magic Fog Cast: an anonymous, privacy-first iOS app for venting what's on your mind. Nothing is ever sent to a third-party AI service.">
+<title>SuSuDeMi — Apps</title>
+<meta name="description" content="SuSuDeMi's iOS apps: Magic Fog Cast, an anonymous venting app, and Oshi Scream Club, an anonymous voice SNS for fans.">
 <style>
   :root{
     --bg-deep:#0d0d0d;
     --bg-card:#1a1a1a;
-    --bg-card-2:#151515;
     --accent:#B4A7D6;
     --accent-soft:rgba(180,167,214,0.14);
     --text-main:#EAD1DC;
@@ -28,7 +27,6 @@
   a{color:var(--accent); text-decoration:none;}
   a:hover{text-decoration:underline;}
 
-  /* language toggling */
   [data-lang="ja"] .lang-en{display:none;}
   [data-lang="en"] .lang-ja{display:none;}
 
@@ -39,14 +37,7 @@
     padding:24px 28px;
     border-bottom:1px solid var(--border);
   }
-  header .logo-wrap{display:flex; align-items:center; gap:24px;}
   header img.logo{height:40px; width:auto;}
-  header .brand-name{font-size:1.1em; letter-spacing:0.04em; color:var(--text-main);}
-  header nav.site-nav a{
-    font-size:0.9em;
-    color:var(--text-soft);
-  }
-  header nav.site-nav a:hover{color:var(--accent);}
 
   #langToggle{
     background:transparent;
@@ -61,140 +52,70 @@
   #langToggle:hover{background:var(--accent-soft);}
 
   .hero{
-    max-width:760px;
+    max-width:700px;
     margin:0 auto;
     padding:72px 28px 48px;
     text-align:center;
   }
   .hero h1{
-    font-size:2.1em;
+    font-size:2em;
     font-weight:300;
     color:#fff;
-    margin:0 0 20px;
+    margin:0 0 16px;
     letter-spacing:0.02em;
   }
   .hero p{
-    font-size:1.05em;
+    font-size:1em;
     color:var(--text-soft);
-    max-width:520px;
+    max-width:480px;
     margin:0 auto;
   }
 
-  section{
-    max-width:980px;
+  .app-grid{
+    max-width:900px;
     margin:0 auto;
-    padding:40px 28px;
+    padding:20px 28px 60px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
   }
-  section h2{
-    font-size:0.85em;
-    letter-spacing:0.15em;
-    text-transform:uppercase;
-    color:var(--accent);
-    text-align:center;
-    margin-bottom:36px;
-    font-weight:600;
-  }
-
-  /* Magic Fog featured card */
-  .featured-card{
+  .app-card{
     background:var(--bg-card);
     border:1px solid var(--border);
     border-radius:20px;
-    padding:40px;
+    padding:36px 32px;
     display:flex;
-    flex-wrap:wrap;
-    gap:32px;
-    align-items:center;
+    flex-direction:column;
     box-shadow:0 20px 50px rgba(0,0,0,0.45);
+    transition:transform 0.15s ease, border-color 0.15s ease;
   }
-  .featured-card .fc-text{flex:1; min-width:260px;}
-  .featured-card h3{
-    font-size:1.5em;
+  .app-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--accent);
+    text-decoration:none;
+  }
+  .app-card h2{
+    font-size:1.4em;
     color:#fff;
-    margin:0 0 8px;
     font-weight:400;
+    margin:0 0 6px;
   }
-  .featured-card .fc-tagline{
+  .app-card .tagline{
     color:var(--accent);
-    font-size:0.95em;
-    margin-bottom:16px;
-  }
-  .featured-card p.fc-desc{margin-bottom:24px;}
-  .store-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    background:var(--accent);
-    color:#161616;
-    font-weight:600;
-    padding:12px 22px;
-    border-radius:12px;
-    font-size:0.92em;
-  }
-  .store-btn:hover{text-decoration:none; opacity:0.9;}
-
-  /* feature highlight */
-  .feature-card{
-    background:var(--bg-card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:36px 40px;
-  }
-  .feature-card .feature-badge{
-    display:inline-block;
-    font-size:0.75em;
-    letter-spacing:0.08em;
-    color:var(--accent);
-    border:1px solid var(--accent);
-    padding:3px 12px;
-    border-radius:999px;
+    font-size:0.9em;
     margin-bottom:14px;
   }
-  .feature-card h3{
-    font-size:1.25em;
-    color:#fff;
-    font-weight:400;
-    margin:0 0 14px;
+  .app-card p.desc{
+    color:var(--text-soft);
+    font-size:0.92em;
+    margin:0;
+    flex:1;
   }
-  .feature-card p{margin:0;}
-
-  /* screenshot placeholders */
-  .screens-row{
-    display:flex;
-    gap:20px;
-    justify-content:center;
-    flex-wrap:wrap;
-  }
-  .phone-frame{
-    width:200px;
-    height:420px;
-    border-radius:28px;
-    border:1px solid var(--border);
-    background:#000;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    color:var(--text-muted);
+  .app-card .go{
+    margin-top:20px;
     font-size:0.85em;
-    overflow:hidden;
+    color:var(--accent);
   }
-  .phone-frame img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    object-position:top;
-    display:block;
-  }
-
-  .contact-box{
-    background:var(--bg-card);
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:36px;
-    text-align:center;
-  }
-  .contact-box h3{color:#fff; font-weight:300; margin-top:0;}
 
   footer{
     text-align:center;
@@ -205,7 +126,7 @@
   footer a{color:var(--text-muted);}
 
   @media (max-width:640px){
-    .featured-card{padding:28px;}
+    .app-grid{grid-template-columns:1fr;}
     .hero{padding:56px 20px 36px;}
   }
 </style>
@@ -213,13 +134,7 @@
 <body>
 
 <header>
-  <div class="logo-wrap">
-    <img src="image/SuSuDeMi_logo.png" alt="SuSuDeMi" class="logo">
-    <nav class="site-nav">
-      <a href="privacy-policy.html" class="lang-ja">プライバシーポリシー</a>
-      <a href="privacy-policy.html" class="lang-en">Privacy Policy</a>
-    </nav>
-  </div>
+  <img src="image/SuSuDeMi_logo.png" alt="SuSuDeMi" class="logo">
   <button id="langToggle" onclick="toggleLang()">
     <span class="lang-ja">EN</span>
     <span class="lang-en">日本語</span>
@@ -227,67 +142,39 @@
 </header>
 
 <div class="hero">
-  <h1 class="lang-ja">誰にも言えないことも、頭から離れない考えも。</h1>
-  <h1 class="lang-en">The things you can't say. The thoughts that won't leave.</h1>
-  <p class="lang-ja">まほうのモヤモヤポイは、心の中に溜まったものを少しだけ軽くする、匿名の吐き出しアプリです。すべて端末内で完結し、外部のAIサービスにデータを送ることはありません。</p>
-  <p class="lang-en">Magic Fog Cast is an anonymous venting app that makes what's weighing on your mind a little lighter. Everything runs on your device — nothing is ever sent to a third-party AI service.</p>
+  <h1 class="lang-ja">SuSuDeMi のアプリ</h1>
+  <h1 class="lang-en">Apps by SuSuDeMi</h1>
+  <p class="lang-ja">気持ちを軽くする、少し変わったアプリを作っています。</p>
+  <p class="lang-en">A small collection of apps for letting things out.</p>
 </div>
 
-<section id="magic-fog">
-  <div class="featured-card">
-    <div class="fc-text">
-      <h3>
-        <span class="lang-ja">まほうのモヤモヤポイ</span>
-        <span class="lang-en">Magic Fog Cast</span>
-      </h3>
-      <p class="fc-tagline lang-ja">匿名で愚痴・本音を吐き出す場所</p>
-      <p class="fc-tagline lang-en">Vent anonymously. No replies, no likes, no one watching.</p>
-      <p class="fc-desc lang-ja">胸につかえたモヤモヤを「モヤ」にして空へ放てば、どこかの誰かがそっと受け取ってくれるかもしれません。返信もいいねもフォロワー数もない、ただ吐き出すことと受け取られることだけのシンプルな場所です。</p>
-      <p class="fc-desc lang-en">Turn what's weighing on you into a "Fog" and release it into the atmosphere — someone, somewhere, may quietly catch it. No replies, no likes, no follower counts. Just the simple act of letting go, and being caught.</p>
-      <a class="store-btn lang-ja" href="https://apps.apple.com/jp/app/magic-fog/id6759996278" target="_blank" rel="noopener">App Storeで見る</a>
-      <a class="store-btn lang-en" href="https://apps.apple.com/jp/app/magic-fog/id6759996278?l=en-US" target="_blank" rel="noopener">Download on the App Store</a>
-    </div>
-  </div>
-</section>
+<div class="app-grid">
+  <a class="app-card" href="magic_fog_cast/index.html">
+    <h2>
+      <span class="lang-ja">まほうのモヤモヤポイ</span>
+      <span class="lang-en">Magic Fog Cast</span>
+    </h2>
+    <p class="tagline lang-ja">匿名で愚痴・本音を吐き出す場所</p>
+    <p class="tagline lang-en">Vent anonymously. No replies, no likes.</p>
+    <p class="desc lang-ja">胸につかえたモヤモヤを「モヤ」にして空へ放てば、どこかの誰かがそっと受け取ってくれるかもしれません。</p>
+    <p class="desc lang-en">Turn what's weighing on you into a "Fog" and release it — someone, somewhere, may quietly catch it.</p>
+    <span class="go lang-ja">詳しく見る →</span>
+    <span class="go lang-en">Learn more →</span>
+  </a>
 
-<section id="features">
-  <h2 class="lang-ja">まほうのモヤモヤポイだけの体験</h2>
-  <h2 class="lang-en">What Makes Magic Fog Cast Different</h2>
-  <div class="feature-card">
-    <span class="feature-badge lang-ja">プレミアム機能</span>
-    <span class="feature-badge lang-en">Premium Feature</span>
-    <h3 class="lang-ja">Kii-Play — タイプした時のリズムまで、そのまま届く</h3>
-    <h3 class="lang-en">Kii-Play — Feel the exact rhythm it was typed in</h3>
-    <p class="lang-ja">モヤを受け取ったとき、送った人がどんな速さ・間で文字を打っていたかを、キー音とともに再現できます。急いで打ったのか、迷いながら打ったのか。文章だけでは伝わらない「間」まで届けてくれる、他にはないまほうのモヤモヤポイだけの機能です。</p>
-    <p class="lang-en">When you catch a Fog, you can replay the exact typing rhythm the sender used — the pauses, the hesitation, the rush — reproduced as keystroke sounds. It's a way of feeling someone's words, not just reading them. A feature you won't find in other apps like this.</p>
-  </div>
-</section>
-
-<section id="screens">
-  <h2 class="lang-ja">アプリの中身</h2>
-  <h2 class="lang-en">Inside the Apps</h2>
-  <div class="screens-row">
-    <div class="phone-frame">
-      <img class="lang-ja" src="image/screens/magicfog-throw-ja.png" alt="モヤを投げる画面">
-      <img class="lang-en" src="image/screens/magicfog-throw-en.png" alt="Throw a Fog screen">
-    </div>
-    <div class="phone-frame">
-      <img class="lang-ja" src="image/screens/magicfog-catch-ja.png" alt="モヤを受け取る画面">
-      <img class="lang-en" src="image/screens/magicfog-catch-en.png" alt="Catch a Fog screen">
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="contact-box">
-    <h3 class="lang-ja">お問い合わせ</h3>
-    <h3 class="lang-en">Contact</h3>
-    <p class="lang-ja">ご質問・ご要望・不具合報告は、こちらまでお気軽にご連絡ください。</p>
-    <p class="lang-en">Questions, feedback, or bug reports — feel free to reach out.</p>
-    <p><a href="mailto:susudemi999@hotmail.com">susudemi999@hotmail.com</a></p>
-    <p><a href="privacy-policy.html" class="lang-ja">プライバシーポリシー</a><a href="privacy-policy.html" class="lang-en">Privacy Policy</a></p>
-  </div>
-</section>
+  <a class="app-card" href="oshi_scream_club/index.html">
+    <h2>
+      <span class="lang-ja">絶叫推し部</span>
+      <span class="lang-en">Oshi Scream Club</span>
+    </h2>
+    <p class="tagline lang-ja">推し活×絶叫のストレス発散SNS</p>
+    <p class="tagline lang-en">Scream for Your Oshi</p>
+    <p class="desc lang-ja">匿名・ボイスエフェクトつきで、思いきり叫んで投稿できるアプリ。推しへの愛も、日々のストレスも、声にして届けよう。</p>
+    <p class="desc lang-en">Scream as loud as you want, anonymously and voice-modulated — share your oshi's most precious moments.</p>
+    <span class="go lang-ja">詳しく見る →</span>
+    <span class="go lang-en">Learn more →</span>
+  </a>
+</div>
 
 <footer>
   <p>&copy; 2026 SuSuDeMi — All rights reserved.</p>
